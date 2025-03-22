@@ -2,8 +2,8 @@
 
 ## Switch On / Off Screensaver
 
-Aufgabenstellung: Den Bildschirmschoner scriptgesteuert ein/-ausschalten können.
-Problem: Standardmäßig ist bei dem aktuellen Raspberry Pi OS Wayland konfiguriert.
+**Aufgabenstellung:** Den Bildschirmschoner scriptgesteuert ein/-ausschalten können.<br />
+**Problem:** Standardmäßig ist bei dem aktuellen Raspberry Pi OS Wayland konfiguriert.
 Für diesen gibt es aber (noch) keinen funktionierenden Bildschirmschoner.
 
 - https://de.wikipedia.org/wiki/Wayland_(Display-Server-Protokoll)
@@ -23,13 +23,13 @@ sudo raspi-config
 
 Danach ein `reboot`.
 
-### Install XScreensaver
+### Install XScreenSaver
 
 ```bash
 sudo apt install xscreensaver
 ```
 
-### Configure XScreensaver
+### Configure XScreenSaver
 
 ![](./screenshots/XScreenSaverSettings.png)
 
