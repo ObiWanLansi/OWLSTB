@@ -15,12 +15,12 @@ app = fastapi.FastAPI()
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-@app.get("/")
-async def root():
-    return {"success": True, "version": "1.0", "host":HOST, "timestamp": datetime.datetime.now(datetime.timezone.utc)}
+@app.get("/status")
+async def status():
+    return {"running": True, "version": "1.0", "host":HOST, "timestamp": datetime.datetime.now(datetime.timezone.utc)}
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 if __name__ == "__main__":
-    uvicorn.run("RPCCService:app", host="0.0.0.0", port=1510, log_level="info", log_config="./logging_config.yaml")
+    uvicorn.run("RPCCService:app", host="127.0.0.1", port=1510, log_level="info", log_config="./logging.yaml")
