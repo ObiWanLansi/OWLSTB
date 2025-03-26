@@ -12,9 +12,12 @@ HOST = socket.gethostname()
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-async def execute(command: str) -> int:
+def execute(command: str) -> dict:
     print(f"Execute '{command}'")
-    return -1
+    return {
+        "exitcode": "-42",
+        "stdout": None
+        }
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -35,3 +38,14 @@ app.contact = {
 async def status():
     return {"running": True, "version": "1.0", "host": HOST, "timestamp": datetime.datetime.now(datetime.timezone.utc)}
 
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+@app.get("/screensaver/activate", summary="Activate the screensaver.")
+async def screensaver_activate():
+    return execute("xscreensaver-command -activate")
+
+
+@app.get("/screensaver/activate", summary="Deactivate the screensaver.")
+async def screensaver_deactivate():
+    return execute("xscreensaver-command -deactivate")
