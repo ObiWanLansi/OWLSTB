@@ -46,6 +46,6 @@ async def screensaver_activate():
     return execute("xscreensaver-command -activate")
 
 
-@app.get("/screensaver/activate", summary="Deactivate the screensaver.")
+@app.get("/screensaver/deactivate", summary="Deactivate the screensaver.")
 async def screensaver_deactivate():
     return execute("xscreensaver-command -deactivate")

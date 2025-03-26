@@ -54,3 +54,8 @@ Nach starten des Scripts ( auf dem Raspberry ;-) ) wird nach einer Sekunde der B
 aktiviert und nach 20 Sekunden wieder deaktiviert. Funktioniert also beides.
 
 <!-- &#x21D2; -->
+
+### API Service
+
+- RestService with FastAPI
+- CLI, GUI, HTML Page for testing purpose or adhoc control ?
