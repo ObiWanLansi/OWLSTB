@@ -1,6 +1,0 @@
-[screensaver]
-activate = ["xscreensaver-command, "-activate"]
-deactivate = ["xscreensaver-command, "-deactivate"]
-
-[system]
-reboot = "reboot"
