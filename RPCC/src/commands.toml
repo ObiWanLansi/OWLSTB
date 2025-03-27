@@ -1,6 +1,13 @@
 [screensaver]
-activate = "xscreensaver-command -activate"
-deactivate = "xscreensaver-command -deactivate"
+activate.command = "xscreensaver-command -activate"
+activate.description = "Activate the screensaver."
+
+deactivate.command = "xscreensaver-command -deactivate"
+deactivate.description = "Deactivate the screensaver."
 
 [system]
-reboot = "reboot"
+reboot.command = "reboot"
+reboot.description = "Execute an reboot."
+
+[test]
+test.command = "ccal"

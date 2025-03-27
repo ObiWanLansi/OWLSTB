@@ -1,3 +1,4 @@
+import os
 import datetime
 import socket
 import fastapi
@@ -19,17 +20,60 @@ def loadConfig() -> dict:
         return tomllib.load(f)
 
 
-def execute(command: str) -> dict:
-    print(f"Execute '{command}'")
-    return {
-        "exitcode": "-42",
-        "stdout": None
-    }
+topics_and_commands = loadConfig()
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+def systemExecute(command: str) -> dict:
+    
+    print(f"Execute '{command}'")
+    
+    buffer = ""
+    
+    p =os.popen(command)
+    for row in p:
+        buffer += row
+    ret = p.close()
+    
+    return {
+        "exitcode": ret,
+        "message": buffer
+    }
 
-topics_and_commands = loadConfig()
+
+def systemExecute2(command: str) -> dict:
+    
+    print(f"Execute '{command}'")
+    
+    buffer = ""
+    
+    with os.popen(command) as p:
+        for row in p:
+            buffer += row
+    
+    return {
+        "exitcode": "-42",
+        "message": buffer
+    }
+
+
+def execute(topic: str, command: str) -> dict:
+    if topic not in topics_and_commands:
+        return {
+            "exitcode": "-42",
+            "message": f"Topic '{topic}' not found!"
+        }
+
+    if command not in topics_and_commands[topic]:
+        return {
+            "exitcode": "-42",
+            "message": f"Command '{command}' not found!"
+        }
+
+    return systemExecute(topics_and_commands[topic][command]["command"])
+
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 app = fastapi.FastAPI()
 app.title = "Raspberry Pi Command & Control"
@@ -55,17 +99,14 @@ async def commands():
 
 @app.get("/command/{topic}/{command}")
 async def command(topic: str, command: str):
-    return {"topic": topic, "command": command}
+    return execute(topic, command)
+    # return {"topic": topic, "command": command}
 
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-# @app.get("/screensaver/activate", summary="Activate the screensaver.")
-# async def screensaver_activate():
-#     return execute("xscreensaver-command -activate")
-
-
-# @app.get("/screensaver/deactivate", summary="Deactivate the screensaver.")
-# async def screensaver_deactivate():
-#     return execute("xscreensaver-command -deactivate")
+# if __name__ == "__main__":
+    # result = execute("test", "test")
+    # result = systemExecute("ipconfig")
+    # result = systemExecute(r"O:\OWLSTB\RPCC\dummyapp\bin\Release\net9.0\dummyapp.exe")
