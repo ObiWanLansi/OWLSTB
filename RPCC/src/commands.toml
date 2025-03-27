@@ -8,6 +8,3 @@ deactivate.description = "Deactivate the screensaver."
 [system]
 reboot.command = "reboot"
 reboot.description = "Execute an reboot."
-
-[test]
-test.command = "ccal"

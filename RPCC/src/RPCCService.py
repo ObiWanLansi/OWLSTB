@@ -24,35 +24,22 @@ topics_and_commands = loadConfig()
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
 def systemExecute(command: str) -> dict:
-    
+
     print(f"Execute '{command}'")
-    
+
     buffer = ""
-    
-    p =os.popen(command)
+
+    p = os.popen(command)
+
     for row in p:
         buffer += row
-    ret = p.close()
-    
-    return {
-        "exitcode": ret,
-        "message": buffer
-    }
 
+    exitcode = p.close()
 
-def systemExecute2(command: str) -> dict:
-    
-    print(f"Execute '{command}'")
-    
-    buffer = ""
-    
-    with os.popen(command) as p:
-        for row in p:
-            buffer += row
-    
     return {
-        "exitcode": "-42",
+        "exitcode": exitcode,
         "message": buffer
     }
 
@@ -92,15 +79,14 @@ async def status():
     return {"running": True, "version": VERSION, "host": HOST, "timestamp": datetime.datetime.now(datetime.timezone.utc)}
 
 
-@app.get("/commands")
+@app.get("/commands", summary="Provides all topics with their commands.")
 async def commands():
     return topics_and_commands
 
 
-@app.get("/command/{topic}/{command}")
+@app.get("/command/{topic}/{command}", summary="Execute the comman from the given topic.")
 async def command(topic: str, command: str):
     return execute(topic, command)
-    # return {"topic": topic, "command": command}
 
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
