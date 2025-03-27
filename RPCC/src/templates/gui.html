@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>RPCC GUI</title>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+    <style>
+
+        body {
+            background-color: #87CEEB;
+			color: #000000;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+		
+		textarea {
+			width: 800px;
+			height:600px;
+			font-family: Courier New, Courier, Terminal;
+			
+		}
+    </style>
+</head>
+
+<body>
+
+<h1>Topics & Commands</h1>
+
+{% for topic in topics_and_commands %}
+<h2>{{topic}}</h2>
+
+{% for command in topics_and_commands[topic] %}
+<h3>{{command}}</h3>
+
+{{topics_and_commands[topic][command]["command"]}} / {{topics_and_commands[topic][command]["description"]}}
+
+{% endfor %}
+
+{% endfor %}
+
+<br />
+
+<h1>Result</h1>
+
+<textarea>
+Lorem ipsum dolor sit amet, lancer eu neque nunc molestie
+dolor consequat a feugiat risus metus justo suscipit. Nulla a
+aliquam porttitor i penatibus adipiscing shari. Parturient pulvinar tempor vel
+et pharetra. Lorem vestibulum nasus integer penatibus facilisi amet purus
+gabrielus. Tellus suscipit habitasse molestie nulla lacinia penatibus spiritus ullamcorper
+neque ipsum est quisque. Fames vestibulum sem scelerisque rutrum. Quis
+maecenas hac magna i commodo nasus sanktus magnis non pretium.
+Tristique auctor ut fermentum porttitor massa parturient neque tristique pulvinar
+nam aliquam. Nec diam interdum pharetra diam velit. Analus lorem
+aliquet pharetra convallis ante nec tempor fringilla tellus sapien ante.
+Nulla mattis fermentum ancus iaculis porta quam lacus iaculis felis.
+Semper venenatis habitant nussi tempor velit. Et at natoque i
+maecenas quis orci rutrum. Cras nullam habitasse diam. Ultrices aenean
+penatibus accumsan felix neque rhoncus montes diam mattis fames. Dis
+urna lacinia pellentesque natoque facilisis dui hac molestie ac tristique
+vivamus. Elit sanktus malesuada tempor scelerisque dapibus lobortis proin id
+ultrices. Diam et netus penatibus quisque ultrices ullamcorper orci e
+accumsan nussi. Sammy ipsum et massa in rhoncus spiritus nulla
+convallis. Integer eget interdum nonummy platea. Quis pretium odio laoreet. 
+Volutpat nam nec porta hac pede wingtsun vestibulum. Ultrices.
+</textarea>
+
+
+</body>
+
+</html>

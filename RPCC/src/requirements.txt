@@ -1,0 +1,3 @@
+fastapi
+tomllib
+jinja2

@@ -3,8 +3,14 @@ import datetime
 import socket
 import fastapi
 import tomllib
+import jinja2
 
-from rich import print
+from fastapi.responses import FileResponse
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import RedirectResponse
+
+# from rich import print
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -27,7 +33,7 @@ topics_and_commands = loadConfig()
 
 def systemExecute(command: str) -> dict:
 
-    print(f"Execute '{command}'")
+    # print(f"Execute '{command}'")
 
     buffer = ""
 
@@ -70,6 +76,19 @@ app.contact = {
     "name": "ObiWanLansi",
     "url": "https://github.com/ObiWanLansi/OWLSTB/tree/main/RPCC"
 }
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+@app.exception_handler(404)
+async def custom_404_handler(_, __):
+    return RedirectResponse("/static/404.html")
+
+
+@app.get('/favicon.ico', include_in_schema=False)
+async def favicon():
+    return FileResponse("./favicon.ico")
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -87,6 +106,16 @@ async def commands():
 @app.get("/command/{topic}/{command}", summary="Execute the comman from the given topic.")
 async def command(topic: str, command: str):
     return execute(topic, command)
+
+
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+@app.get("/gui", response_class=HTMLResponse)
+async def gui():
+    with open(r".\templates\gui.html", "rt") as f:
+        template = jinja2.Template(f.read())
+    return template.render(topics_and_commands=topics_and_commands)
 
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
