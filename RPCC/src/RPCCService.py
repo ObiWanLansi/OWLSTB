@@ -20,25 +20,16 @@ VERSION = "1.0"
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-def loadConfig() -> dict:
-    with open("config.toml", "rb") as f:
-        return tomllib.load(f)
+with open("config.toml", "rb") as f:
+    config = tomllib.load(f)
 
-
-def loadCommands() -> dict:
-    with open("commands.toml", "rb") as f:
-        return tomllib.load(f)
-
-
-config = loadConfig()
-topics_and_commands = loadCommands()
+with open("commands.toml", "rb") as f:
+    topics_and_commands = tomllib.load(f)
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 def systemExecute(command: str) -> dict:
-
-    # print(f"Execute '{command}'")
 
     buffer = ""
 
@@ -112,7 +103,6 @@ async def commands():
 async def command(topic: str, command: str):
     return execute(topic, command)
 
-
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -121,7 +111,6 @@ async def gui():
     with open(r".\templates\gui.html", "rt") as f:
         template = jinja2.Template(f.read())
     return template.render(config=config, topics_and_commands=topics_and_commands)
-
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

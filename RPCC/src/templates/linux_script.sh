@@ -1,2 +1,2 @@
 #!/bin/bash
-curl  http://{{host}}:{{port|string}}/{{topic}}/{{command}}
+curl  http://{{host}}:{{port|string}}/command/{{topic}}/{{command}}
