@@ -1,3 +1,4 @@
 fastapi
-tomllib
 jinja2
+pyyaml
+uvicorn

@@ -108,7 +108,7 @@ async def command(topic: str, command: str):
 
 @app.get("/gui", response_class=HTMLResponse)
 async def gui():
-    with open(r".\templates\gui.html", "rt") as f:
+    with open(r"./templates/gui.html", "rt") as f:
         template = jinja2.Template(f.read())
     return template.render(config=config, topics_and_commands=topics_and_commands)
 
@@ -119,6 +119,7 @@ if __name__ == "__main__":
 
     # webbrowser.open_new_tab("http://127.0.0.1:1510/docs")
     # webbrowser.open_new_tab("http://127.0.0.1:1510/status")
+    # webbrowser.open_new_tab("http://127.0.0.1:1510/gui")
 
     uvicorn.run("RPCCService:app", host=config["server"]["host"], port=config["server"]["port"], log_level="info", reload=True)
 
