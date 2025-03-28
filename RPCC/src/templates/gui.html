@@ -11,11 +11,15 @@
     <script>
         async function executeCommand(url) {
             let resultTextArea = document.getElementById("resultTextArea");
+            let apiCall = document.getElementById("apiCall");
+            
+            apiCall.value = url;
             // resultTextArea.value = "Executing url: '" + url + "'\n";
 
             let data = await fetch(url);
             let text = await data.text();
             let json = JSON.parse(text)
+            
             resultTextArea.value = JSON.stringify(json, null, 3);
         }
     </script>
@@ -40,9 +44,11 @@
 
 <br /><br /><br /><br />
 
-<h1>API Url</h1>
+<h1>Call</h1>
 
-<input type="text" readonly="readonly" id="apiUrl" />
+<input type="text" readonly="readonly" id="apiCall" />
+
+<br /><br /><br /><br />
 
 <h1>Result</h1>
 

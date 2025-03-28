@@ -31,13 +31,14 @@ td {
 
 textarea {
 	width: 100%;
-	/* width: 800px; */
 	height:600px;
 	background-color: #FFFF00;
 	color: #000000;
-	font-family: Courier New, Courier, Terminal;
+	font-family: Courier New, Courier;
+	font-size: 18px;
 	border-left: 22px solid #FFA500;
 	border-radius: 20px; 
+	padding-left: 10px;
 }
 
 input[type="text"] {
@@ -47,6 +48,9 @@ input[type="text"] {
 	border: none;
 	border-left: 22px solid #FFA500;
 	border-radius: 20px; 
+	font-size: 18px;
+	font-family: Courier New, Courier;
+	padding-left: 10px;
 }
 
 button {
@@ -61,6 +65,8 @@ button {
 	box-shadow: 0px 0px 20px #000000;
 	margin-right: 20px;
 	cursor: pointer;
+	font-weight: bold;
+	font-family: Tahoma;
 }
 
 button:hover {
