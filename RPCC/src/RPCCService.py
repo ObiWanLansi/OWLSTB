@@ -120,7 +120,7 @@ async def command(topic: str, command: str):
 async def gui():
     with open(r".\templates\gui.html", "rt") as f:
         template = jinja2.Template(f.read())
-    return template.render(topics_and_commands=topics_and_commands)
+    return template.render(config=config, topics_and_commands=topics_and_commands)
 
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -36,7 +36,8 @@
     <h2>{{topic|title}}</h2>
 
     {% for command in topics_and_commands[topic] %}
-        <button title="{{topics_and_commands[topic][command]["description"]}}" onclick="executeCommand('None')">{{command|title}}</button>
+        {% set url = "http://" + config["server"]["host"] + ":" + config["server"]["port"]|string + "/command/" + topic + "/" + command %}
+        <button title="{{topics_and_commands[topic][command]["description"]}}" onclick="executeCommand('{{url}}')">{{command|title}}</button>   
     {% endfor %}
 
 {% endfor %}

@@ -8,3 +8,13 @@ deactivate.description = "Deactivate the screensaver."
 [system]
 reboot.command = "reboot"
 reboot.description = "Execute an reboot."
+
+[test]
+ipconfig.command = "ipconfig"
+ipconfig.description = "Call ipconfig for testing (only Windows)."
+
+ifconfig.command = "ifconfig"
+ifconfig.description = "Call ifconfig for testing (only Linux)."
+
+datte.command = "date /t"
+date.description = "Call date for testing (only Windows)."
