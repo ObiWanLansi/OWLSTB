@@ -16,5 +16,5 @@ ipconfig.description = "Call ipconfig for testing (only Windows)."
 ifconfig.command = "ifconfig"
 ifconfig.description = "Call ifconfig for testing (only Linux)."
 
-datte.command = "date /t"
+date.command = "date /t"
 date.description = "Call date for testing (only Windows)."

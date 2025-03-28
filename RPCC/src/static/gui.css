@@ -40,6 +40,15 @@ textarea {
 	border-radius: 20px; 
 }
 
+input[type="text"] {
+	width: 100%;
+	background-color: #FFFF00;
+	color: #000000;
+	border: none;
+	border-left: 22px solid #FFA500;
+	border-radius: 20px; 
+}
+
 button {
 	background-color: #FFFF00;
 	color: #000000;

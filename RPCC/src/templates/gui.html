@@ -9,18 +9,14 @@
 
 <body>
     <script>
-        function executeCommand(command) {
+        async function executeCommand(url) {
             let resultTextArea = document.getElementById("resultTextArea");
-            resultTextArea.value = "Executing command: '" + command + "'\n";
-            // var xhr = new XMLHttpRequest();
-            // xhr.open("POST", "/execute", true);
-            // xhr.setRequestHeader("Content-Type", "application/json");
-            // xhr.onreadystatechange = function() {
-            //     if (xhr.readyState == 4 && xhr.status == 200) {
-            //         result.value = xhr.responseText;
-            //     }
-            // };
-            // xhr.send(JSON.stringify({ "command": command }));
+            // resultTextArea.value = "Executing url: '" + url + "'\n";
+
+            let data = await fetch(url);
+            let text = await data.text();
+            let json = JSON.parse(text)
+            resultTextArea.value = JSON.stringify(json, null, 3);
         }
     </script>
 
@@ -44,6 +40,9 @@
 
 <br /><br /><br /><br />
 
+<h1>API Url</h1>
+
+<input type="text" readonly="readonly" id="apiUrl" />
 
 <h1>Result</h1>
 
