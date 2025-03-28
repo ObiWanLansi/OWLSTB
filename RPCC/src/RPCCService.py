@@ -1,4 +1,5 @@
 import os
+import uvicorn
 import datetime
 import socket
 import fastapi
@@ -10,8 +11,6 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
 
-# from rich import print
-
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -22,11 +21,17 @@ VERSION = "1.0"
 
 
 def loadConfig() -> dict:
+    with open("config.toml", "rb") as f:
+        return tomllib.load(f)
+
+
+def loadCommands() -> dict:
     with open("commands.toml", "rb") as f:
         return tomllib.load(f)
 
 
-topics_and_commands = loadConfig()
+config = loadConfig()
+topics_and_commands = loadCommands()
 
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -121,7 +126,13 @@ async def gui():
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-# if __name__ == "__main__":
+if __name__ == "__main__":
+
+    # webbrowser.open_new_tab("http://127.0.0.1:1510/docs")
+    # webbrowser.open_new_tab("http://127.0.0.1:1510/status")
+
+    uvicorn.run("RPCCService:app", host=config["server"]["host"], port=config["server"]["port"], log_level="info", reload=True)
+
     # result = execute("test", "test")
     # result = systemExecute("ipconfig")
     # result = systemExecute(r"O:\OWLSTB\RPCC\dummyapp\bin\Release\net9.0\dummyapp.exe")

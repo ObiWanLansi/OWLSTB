@@ -59,6 +59,3 @@ aktiviert und nach 20 Sekunden wieder deaktiviert. Funktioniert also beides.
 
 - RestService with FastAPI
 - CLI, GUI, HTML Page for testing purpose and/or adhoc control ?
-- Wenn HTML Page ServiceWorker damit Installable App
-- `rpcc.css`
-- Logo Raspi + FireFighter generiren lassen

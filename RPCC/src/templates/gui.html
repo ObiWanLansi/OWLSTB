@@ -3,57 +3,50 @@
 
 <head>
     <title>RPCC GUI</title>
-
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-
-    <style>
-
-        body {
-            background-color: #87CEEB;
-			color: #000000;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: none;
-        }
-		
-		textarea {
-			width: 800px;
-			height:600px;
-			font-family: Courier New, Courier, Terminal;
-			
-		}
-    </style>
+	<link rel="stylesheet" href="/static/w3.css"></link>
+	<link rel="stylesheet" href="/static/gui.css"></link>
 </head>
 
 <body>
+    <script>
+        function executeCommand(command) {
+            let resultTextArea = document.getElementById("resultTextArea");
+            resultTextArea.value = "Executing command: '" + command + "'\n";
+            // var xhr = new XMLHttpRequest();
+            // xhr.open("POST", "/execute", true);
+            // xhr.setRequestHeader("Content-Type", "application/json");
+            // xhr.onreadystatechange = function() {
+            //     if (xhr.readyState == 4 && xhr.status == 200) {
+            //         result.value = xhr.responseText;
+            //     }
+            // };
+            // xhr.send(JSON.stringify({ "command": command }));
+        }
+    </script>
 
-<h1>Topics & Commands</h1>
+    <table width="100%">
+        <tr>
+            <td><img src="./static/espasingen.png" width="140px" /><img src="./static/feuerwehr.png" width="140px" /></td>
+        </tr>
+    </table>
+
+    <h1>Topics & Commands</h1>
 
 {% for topic in topics_and_commands %}
-<h2>{{topic}}</h2>
+    <h2>{{topic|title}}</h2>
 
-{% for command in topics_and_commands[topic] %}
-<h3>{{command}}</h3>
-
-{{topics_and_commands[topic][command]["command"]}} / {{topics_and_commands[topic][command]["description"]}}
-
-{% endfor %}
+    {% for command in topics_and_commands[topic] %}
+        <button title="{{topics_and_commands[topic][command]["description"]}}" onclick="executeCommand('None')">{{command|title}}</button>
+    {% endfor %}
 
 {% endfor %}
 
-<br />
+<br /><br /><br /><br />
+
 
 <h1>Result</h1>
 
-<textarea>
+<textarea readonly="readonly" id="resultTextArea">
 Lorem ipsum dolor sit amet, lancer eu neque nunc molestie
 dolor consequat a feugiat risus metus justo suscipit. Nulla a
 aliquam porttitor i penatibus adipiscing shari. Parturient pulvinar tempor vel
