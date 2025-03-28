@@ -1,5 +1,7 @@
 # Rasperberry Pi Command & Control
 
+![](./images/futuristic_fire_truck_mars.jpg)
+
 ## Switch On / Off Screensaver
 
 **Aufgabenstellung:** Den Bildschirmschoner scriptgesteuert ein/-ausschalten können.<br />
@@ -55,7 +57,3 @@ aktiviert und nach 20 Sekunden wieder deaktiviert. Funktioniert also beides.
 
 <!-- &#x21D2; -->
 
-### API Service
-
-- RestService with FastAPI
-- CLI, GUI, HTML Page for testing purpose and/or adhoc control ?

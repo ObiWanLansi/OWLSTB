@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 
 <head>
-    <title>RPCC GUI</title>
+    <meta charset="UTF-8">
+    <title>RPCC WebInterface</title>
+    <link rel="manifest" href="/static/manifest.json">
 	<link rel="stylesheet" href="/static/w3.css"></link>
 	<link rel="stylesheet" href="/static/gui.css"></link>
 </head>
@@ -14,7 +16,6 @@
             let apiCall = document.getElementById("apiCall");
             
             apiCall.value = url;
-            // resultTextArea.value = "Executing url: '" + url + "'\n";
 
             let data = await fetch(url);
             let text = await data.text();

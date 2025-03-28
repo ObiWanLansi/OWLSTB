@@ -1,0 +1,15 @@
+{
+    "name": "RPCC WebInterface",
+    "short_name": "RPCC",
+    "start_url": "/gui",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#000000",
+    "icons": [
+      {
+        "src": "feuerwehr.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
